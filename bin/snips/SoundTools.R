@@ -45,6 +45,6 @@ names(tempfiles)[names(tempfiles)=="V3"] <- "IntTemperature"
 names(tempfiles)[names(tempfiles)=="V4"] <- "ExtTemperature"
 
   #Now write the dataframe to a csv file
-write.csv(ECC_Records, "./R-Test/tidy/ECC/ECC_Sensors.csv", row.names = FALSE)
+write.csv(tempfiles, "./R-Test/tidy/ECC/ECC_Sensors.csv", row.names = FALSE)
 
 
