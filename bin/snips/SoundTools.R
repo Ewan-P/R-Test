@@ -32,8 +32,12 @@ write.csv(ECC_Records, "./R-Test/tidy/ECC/ECC_txt_classifier_results.csv", row.n
 #After importing, combining, and cleaning the data, it should be writen as "ECC_Sensor.csv¨ to the tidy/ECC directory.
 
 #First Combine all sensor.txt files into one dataframe
+HomeDir <- "/home/rstudio"  #Only vaid for AWS - RStudio - Server
+RawDir <- "/home/rstudio/R-Test/raw"  #Only vaid for AWS - RStudio - Server
+setwd(RawDir)
 temp = list.files(pattern = "ECC_Sensor-*", recursive = TRUE)
-tempfiles = do.call(rbind, lapply(temp, function(x) read.delim(x, header = FALSE, sep = "\t")))
+tempfiles = do.call(rbind, lapply(temp, function(x) read.delim(x, header = FALSE, sep = "\t", stringsAsFactors = FALSE)))
+setwd(HomeDir)
   #column names will be V1 to V6 although V5 & V6 will be NA
   #remove these columns by setting name to NA
 tempfiles$V5 <- NULL
