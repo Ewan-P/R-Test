@@ -51,4 +51,9 @@ names(tempfiles)[names(tempfiles)=="V4"] <- "ExtTemperature"
   #Now write the dataframe to a csv file
 write.csv(tempfiles, "./R-Test/tidy/ECC/ECC_Sensors.csv", row.names = FALSE)
 
+#Problem:  Based on observations in ECC_Sensors.csv generate a list of date on which observations were made
+UniqueDates <- unique(tempfiles$ObsDate)
 
+UniqueDates
+  #Now wright this out to a csv file
+write.csv(tempfiles, "./R-Test/tidy/ECC/ECC_OperatingDates.csv", row.names = FALSE)
