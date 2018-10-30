@@ -1,2 +1,7 @@
 # R-Test
-Learning R &amp; Git at the same time..... what could go wrong?
+#   Ewan Parsons
+#   2018-10-30
+#   R-Text/tidy
+#   Directory for all processed data files
+#   .../raw/ECC  raw data files for Eccles detector.
+#   No sub directories as results are summated for all raw recordings
