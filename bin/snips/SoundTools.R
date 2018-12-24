@@ -57,3 +57,7 @@ UniqueDates <- unique(tempfiles$ObsDate)
 UniqueDates
   #Now wright this out to a csv file
 write.csv(tempfiles, "./R-Test/tidy/ECC/ECC_OperatingDates.csv", row.names = FALSE)
+############################# Summarising Results #####################
+#absolute counts in dataframe
+sp_counts <- ECC_Records %>% select(species) %>% group_by(species) %>% summarise(number = n())
+
