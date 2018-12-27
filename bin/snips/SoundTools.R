@@ -60,4 +60,19 @@ write.csv(tempfiles, "./R-Test/tidy/ECC/ECC_OperatingDates.csv", row.names = FAL
 ############################# Summarising Results #####################
 #absolute counts in dataframe
 sp_counts <- ECC_Records %>% select(species) %>% group_by(species) %>% summarise(number = n())
+# alternative 
+table(ECC_Records)  #Probably easier
 
+######################### Extract Records for low frequency species #######
+## based on:> https://stackoverflow.com/questions/20204257/subset-data-frame-based-on-number-of-rows-per-group
+tt < table(ECC_Records)  #This creates a temporary vector listing all species and the incidence of records
+ECC_results_validation <- subset(ECC_Records, species %in% names(tt[tt <= 20])) #Here the criterion is 30
+table(ECC_Records$species)
+
+############# Add columns to dataframe for validation of records ##############
+ECC_results_valudation$to_validate <- TRUE  #Logical to indicate the record is to be validated
+ECC_results_valudation$autoID_validate <- FALSE  #Logical to indicate if the auto ID is valid
+ECC_results_valudation$species_val <- "-" #Char for validator to enter alternative species
+ECC_results_valudation$validator <- "-" #Char for validator to enter their initials
+ECC_results_valudation$validator_comments <- "-" #Char for validator to enter comments
+write.csv(ECC_results_valudation, "./R-Test/tidy/ECC/ECC_results2validate.csv", row.names = FALSE)
