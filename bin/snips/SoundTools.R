@@ -36,7 +36,7 @@ HomeDir <- "/home/rstudio"  #Only vaid for AWS - RStudio - Server
 RawDir <- "/home/rstudio/R-Test/raw"  #Only vaid for AWS - RStudio - Server
 setwd(RawDir)
 temp = list.files(pattern = "ECC_Sensor-*", recursive = TRUE)
-tempfiles = do.call(rbind, lapply(temp, function(x) read.delim(x, header = FALSE, sep = "\t", stringsAsFactors = FALSE)))
+tempfiles = do.call(rbind, lapply(temp, function(x) read.delim(x, header = FALSE, sep = "\t", )))
 setwd(HomeDir)
   #column names will be V1 to V6 although V5 & V6 will be NA
   #remove these columns by setting name to NA
@@ -65,8 +65,8 @@ table(ECC_Records)  #Probably easier
 
 ######################### Extract Records for low frequency species #######
 ## based on:> https://stackoverflow.com/questions/20204257/subset-data-frame-based-on-number-of-rows-per-group
-tt < table(ECC_Records)  #This creates a temporary vector listing all species and the incidence of records
-ECC_results_validation <- subset(ECC_Records, species %in% names(tt[tt <= 20])) #Here the criterion is 30
+tt <- table(ECC_Records$species)  #This creates a temporary vector listing all species and the incidence of records
+ECC_results_valudation <- subset(ECC_Records, species %in% names(tt[tt <= 20])) #Here the criterion is 30
 table(ECC_Records$species)
 
 ############# Add columns to dataframe for validation of records ##############
@@ -76,3 +76,27 @@ ECC_results_valudation$species_val <- "-" #Char for validator to enter alternati
 ECC_results_valudation$validator <- "-" #Char for validator to enter their initials
 ECC_results_valudation$validator_comments <- "-" #Char for validator to enter comments
 write.csv(ECC_results_valudation, "./R-Test/tidy/ECC/ECC_results2validate.csv", row.names = FALSE)
+
+############# Post validation 
+#filter all records with "accuracy" less than 0.6.  
+ECC_results_valudation2 <- subset(ECC_Records, accuracy >= 0.6, stringsAsFactors = FALSE)
+table(ECC_results_valudation2$species)
+#The 0.6 is an arbitary number but usefull to ass the impact of higher cutoffs
+
+#Calculate the % reduction between the full and filtered dataset
+round(((table(ECC_Records$species) - table(ECC_results_valudation2$species)) / table(ECC_Records$species) * 100), digits = 0)
+
+############### Data Summaries
+install.packages("dplyr", "lubridate")
+library(dplyr)
+library(lubridate)
+
+#Add columns for Year, Month and DoM
+#NB as this uses dplyr functions output needs to be a new df
+test_df <- mutate(ECC_results_valudation2, Year = as.character.Date(obs_datetime, format = "%Y"), Month = as.character.Date(obs_datetime, format = "%m"), DoM = as.character.Date(obs_datetime, format = "%d" ))
+
+#Now generate summaries
+#1st by year
+output_df <- test_df %>% group_by(Year, Month, species) %>% select(DoM) %>% summarise( Count = n())
+#Alternatively by species
+output_df <- test_df %>% group_by(species, Year, Month) %>% select(DoM) %>% summarise( Count = n())

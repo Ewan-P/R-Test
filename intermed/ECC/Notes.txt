@@ -1,0 +1,40 @@
+#EAP 2018-12-31
+#Notes and Observations from evaluation of data
+
+
+# Post processing
+Processing gives 40115 records of individual bats.  These assume an "accuracy" cutoff of 0.5
+The count by species is as follows:
+Barbar Eptser Myodau Myonat Nyclei Nycnoc Pipnat Pippip Pippyg Pleaur 
+    20    388      8      6      1   4452   2826  29857   2596      1 
+As can be seen the most numerous species if Pippt, 
+while there are individual records for Myclei and Pleaur.
+
+#Results validation:
+All species with less than 20 records were selected for manual validation, as follows.
+Barbar Myodau Myonat Nyclei Pleaur 
+    20      8      6      1      1 
+Validation was performed by SMP based on library of reference calls and previous experiance.
+> Add comments from validation
+
+
+#Post validation evaluations
+Increase of "accuracy" cut off.  
+The original results data set was filtered to exclude all records with an "accuracy" of <0.6
+Giving the following new results data set
+Barbar Eptser Myodau Myonat Nyclei Nycnoc Pipnat Pippip Pippyg Pleaur 
+    20    367      4      5      0   4246   2689  29482   2553      0 
+
+Which is a loss of 789 records broken down as follows:
+Barbar Eptser Myodau Myonat Nyclei Nycnoc Pipnat Pippip Pippyg Pleaur 
+     0    -21     -4     -1     -1   -206   -137   -375    -43     -1
+
+Or as a percentage reduction from the initials results data set of:
+Barbar Eptser Myodau Myonat Nyclei Nycnoc Pipnat Pippip Pippyg Pleaur 
+   0.0   -5.4  -50.0  -16.7 -100.0   -4.6   -4.8   -1.3   -1.7 -100.0 
+   
+Observations from these % changes:
+a) Classification of Barbar is good, and as all these records have been validation no further investigation is waranted.
+b) Further investigation for Eptser, Nycnoc, and Pipnat is waranted
+c) Classification of Pippip & Pippyg is good, and given the number of high (>= 0.6) "accuracy" records no further investigation is waranted.
+d) Low record count for Myodau, Myonat, Myclei & Pleaur makes classification of these species difficult.  Howerver given the manual validation of Myodau and Myonat, these species are present in the data set.
