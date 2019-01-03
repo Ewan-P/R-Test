@@ -1,0 +1,61 @@
+KALEIDOSCOPE 5.1.0 01/03/19 09:42:33
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181107_234630.wav 192000x1
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181110_172625.wav 192000x1
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181105_172427.wav 192000x1
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181105_172721.wav 192000x1
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181025_183842.wav 192000x1
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181105_172427_000.wav
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181105_172521.wav 192000x1
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181025_183842_000.wav
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181105_172721_000.wav
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181107_234630_000.wav
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181110_172625_000.wav
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181105_211036.wav 192000x1
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181104_170334.wav 192000x1
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181110_173036.wav 192000x1
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181113_165558.wav 192000x1
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181110_173036_000.wav
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181104_170334_000.wav
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181115_165520.wav 192000x1
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181113_165558_000.wav
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181105_211036_000.wav
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181115_165520_000.wav
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181110_181642.wav 192000x1
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181105_172521_000.wav
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181127_203213.wav 192000x1
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181113_173136.wav 192000x1
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181127_203213_000.wav
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181113_173136_000.wav
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181116_025647.wav 192000x1
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181201_223255.wav 192000x1
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181201_222744.wav 192000x1
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181115_172053.wav 192000x1
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181110_181642_000.wav
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181115_172053_000.wav
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181208_053619.wav 192000x1
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181115_180642.wav 192000x1
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181201_222744_000.wav
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181201_222749_000.wav
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181208_220918.wav 192000x1
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181208_220918_000.wav
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181116_025647_000.wav
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181215_174021.wav 192000x1
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181215_151933.wav 192000x1
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181215_174021_000.wav
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181215_174322.wav 192000x1
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181215_151933_000.wav
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181208_053619_000.wav
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181215_174322_000.wav
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181201_223255_000.wav
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181223_200812.wav 192000x1
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181215_162326.wav 192000x1
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181223_200812_000.wav
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181230_071600.wav 192000x1 ERROR
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181215_162326_000.wav
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181226_230537.wav 192000x1
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181115_180642_000.wav
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181208_220909.wav 192000x1
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181226_230537_000.wav
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181208_220909_000.wav
+INPUT E:\Eccles Bats\Downloaded\2018-12-26 ECC-B\Data\ECC_20181226_230539.wav 192000x1
+OK         : K:\Ewan\BatAnalysis\WorkingFilesEccles\2018-12-26 ECC-B\Data\ECC_20181226_230539_000.wav

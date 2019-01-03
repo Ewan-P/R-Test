@@ -1,0 +1,67 @@
+dtt modefreq=1
+
+
+tOF : 09:48:57:355
+wavfile=ECC_20181105_172521_000.wav
+c:
+g=1
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 09:48:57:958
+wavfile=ECC_20181110_181642_000.wav
+c:
+g=1
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 09:48:58:046
+wavfile=ECC_20181116_025647_000.wav
+c:
+g=1
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 09:48:58:194
+wavfile=ECC_20181208_220909_000.wav
+c:
+g=1
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 09:48:58:297
+wavfile=ECC_20181223_200812_000.wav
+c:
+g=1
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+endDetec  IThread = 3
