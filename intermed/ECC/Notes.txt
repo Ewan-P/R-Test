@@ -38,3 +38,46 @@ a) Classification of Barbar is good, and as all these records have been validati
 b) Further investigation for Eptser, Nycnoc, and Pipnat is waranted
 c) Classification of Pippip & Pippyg is good, and given the number of high (>= 0.6) "accuracy" records no further investigation is waranted.
 d) Low record count for Myodau, Myonat, Myclei & Pleaur makes classification of these species difficult.  Howerver given the manual validation of Myodau and Myonat, these species are present in the data set.
+
+Summary Statistics for different Accuracy thresholds
+
+Cut-off 0.5
+# A tibble: 10 x 6
+   `(species)` count   max  mean   min std_deviation
+   <chr>       <int> <dbl> <dbl> <dbl>         <dbl>
+ 1 Barbar         20  0.99 0.968  0.86        0.0308
+ 2 Eptser        388  0.99 0.876  0.51        0.131 
+ 3 Myodau          8  0.97 0.678  0.5         0.190 
+ 4 Myonat          6  0.99 0.838  0.5         0.216 
+ 5 Nyclei          1  0.54 0.54   0.54       NA     
+ 6 Nycnoc       4452  0.99 0.897  0.5         0.122 
+ 7 Pipnat       2826  0.99 0.834  0.5         0.118 
+ 8 Pippip      29857  0.99 0.936  0.5         0.0795
+ 9 Pippyg       2596  0.99 0.929  0.5         0.0900
+10 Pleaur          1  0.5  0.5    0.5        NA  
+
+Cut-off 0.6
+# A tibble: 8 x 6
+  `(species)` count   max  mean   min std_deviation
+  <chr>       <int> <dbl> <dbl> <dbl>         <dbl>
+1 Barbar         20  0.99 0.968  0.86        0.0308
+2 Eptser        367  0.99 0.894  0.6         0.110 
+3 Myodau          4  0.97 0.835  0.7         0.130 
+4 Myonat          5  0.99 0.906  0.63        0.156 
+5 Nycnoc       4246  0.99 0.914  0.6         0.0972
+6 Pipnat       2689  0.99 0.848  0.6         0.101 
+7 Pippip      29482  0.99 0.941  0.6         0.0668
+8 Pippyg       2553  0.99 0.935  0.6         0.0755
+
+Cut-off 0.75
+# A tibble: 8 x 6
+  `(species)` count   max  mean   min std_deviation
+  <chr>       <int> <dbl> <dbl> <dbl>         <dbl>
+1 Barbar         20  0.99 0.968  0.86        0.0308
+2 Eptser        314  0.99 0.933  0.75        0.0608
+3 Myodau          3  0.97 0.88   0.75        0.115 
+4 Myonat          4  0.99 0.975  0.94        0.0238
+5 Nycnoc       3837  0.99 0.939  0.75        0.0606
+6 Pipnat       2216  0.99 0.884  0.75        0.0681
+7 Pippip      28472  0.99 0.951  0.75        0.0450
+8 Pippyg       2433  0.99 0.948  0.75        0.0491

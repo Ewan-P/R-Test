@@ -1,8 +1,8 @@
 #EAP 2018-10-27
 #Sound processing snips, initally focussed on processing results from ECC records
 
-#Import the results of claiffication.
-ECC_Records <- read.csv("./R-Test/intermed/ECC/ECC_txt_classifier_results.csv", header = TRUE)
+#Import the results of classification.
+ECC_Records <- read.csv("./R-Test/intermed/ECC/ECC_txt_classifier_results.csv", header = TRUE, stringsAsFactors = FALSE)
 
 #=========================================================
 #Extract date/time from file_name column in table
@@ -16,7 +16,7 @@ TestFrame <- data.frame(obs_datetime = as.POSIXct(gsub("_", "", substr(ECC_Recor
 #Or to ammend the existing dataframe
 ECC_Records <- data.frame(obs_datetime = as.POSIXct(gsub("_", "", substr(ECC_Records$filename,5,19)), format="%Y%m%d%H%M%S"), ECC_Records)
 # Finally write the new dataframe out as a csv
-write.csv(ECC_Records, "./R-Test/tidy/ECC/ECC_txt_classifier_results.csv", row.names = FALSE)
+#filwrite.csv(ECC_Records, "./R-Test/tidy/ECC/ECC_txt_classifier_results.csv", row.names = FALSE)
 
 
 #======================================================
@@ -51,17 +51,22 @@ names(tempfiles)[names(tempfiles)=="V4"] <- "ExtTemperature"
   #Now write the dataframe to a csv file
 write.csv(tempfiles, "./R-Test/tidy/ECC/ECC_Sensors.csv", row.names = FALSE)
 
-#Problem:  Based on observations in ECC_Sensors.csv generate a list of date on which observations were made
+#Problem:  Based on observations in ECC_Sensors.csv generate a list of dates on which observations were made
 UniqueDates <- unique(tempfiles$ObsDate)
 
 UniqueDates
-  #Now wright this out to a csv file
+  #Now write this out to a csv file
 write.csv(tempfiles, "./R-Test/tidy/ECC/ECC_OperatingDates.csv", row.names = FALSE)
 ############################# Summarising Results #####################
 #absolute counts in dataframe
 sp_counts <- ECC_Records %>% select(species) %>% group_by(species) %>% summarise(number = n())
 # alternative 
 table(ECC_Records)  #Probably easier
+
+# Summary Statistics
+accuracy_filter <- 0.75  #Change this value to set required accuracy cut-off.  In practice 0.5 is applied by Stuart when agreegating records.
+ECC_Records %>%  filter(., accuracy >= accuracy_filter) %>% group_by((species)) %>% summarise(count = n(), max = max(accuracy), mean = mean(accuracy), min = min(accuracy), std_deviation = sd(accuracy))
+
 
 ######################### Extract Records for low frequency species #######
 ## based on:> https://stackoverflow.com/questions/20204257/subset-data-frame-based-on-number-of-rows-per-group
@@ -100,3 +105,62 @@ test_df <- mutate(ECC_results_valudation2, Year = as.character.Date(obs_datetime
 output_df <- test_df %>% group_by(Year, Month, species) %>% select(DoM) %>% summarise( Count = n())
 #Alternatively by species
 output_df <- test_df %>% group_by(species, Year, Month) %>% select(DoM) %>% summarise( Count = n())
+
+####### Look for "Next Best" result #####################
+#  Useful to check classification to see if the next best result appeared in earlier / later calls #########
+#  Need to be aware that each csv file can be 10 - 20 MB is size so may have space issues
+#  Uses code from: https://stackoverflow.com/questions/11433432/how-to-import-multiple-csv-files-at-once
+#  Using tidyvers functions
+library(readr)
+library(dplyr)
+library(purrr)
+#  Set up directories
+Home_Dir <- "/home/rstudio"  #Only vaid for AWS - RStudio - Server
+Raw_Dir <- "/home/rstudio/R-Test/raw/ECC" #Only vaid for AWS - RStudio - Server
+Intermed_Dir <- "/home/rstudio/R-Test/intermed/ECC"  #Only vaid for AWS - RStudio - Server
+Results_Dir <- "/home/rstudio/R-test/tidy/ECC"   #Only vaid for AWS - RStudio - Server
+Output_Dir <- "/home/rstudio/R-test/output"   #Only vaid for AWS - RStudio - Server
+
+setwd(Intermed_Dir)  #IdTot files are results of processing so in Intermed rather than Raw folders
+tbl <-
+  list.files(pattern = "IdTot.csv", recursive = TRUE) %>% 
+  map_df(~read_csv(.))
+
+#Now write the dataframe to a csv file
+setwd(Results_Dir)
+write.csv(tbl, "ECC_IdTot_all.csv", row.names = FALSE)
+setwd(HomeDir)
+#    Finished gathering data > now filter for only bats
+# Will first filter on file name field to exclude all files that are not in ECC_Records.
+# However as the filename column in ECC_Records is a factor this needs to be first converted to char
+ECC_Records_files <- data_frame(filename = as.character(ECC_Records$filename))
+#Now filter> 
+tbl2 <- filter(tbl, Group.1 %in% ECC_Records_files$filename & SpMaxF2 %in% Norfolk_species$species )
+View(tbl2)
+
+########  Generate a list of Norfolk Bat Species using SpeciesList_HIGHALL.csv from SEN ====
+#import the cvs
+tmp_species <- read_csv("~/local/SpeciesList_HIGHALL.csv", col_names = TRUE, na = "FALSE", quoted_na = "FALSE")
+#replace NA with NULL
+tmp_species <- replace_na(tmp_species, list(NULL))
+#filter for Norfolk bats
+tmp_species <- filter(tmp_species, Norfolk == "x" & Group == "bat")
+#remove unused columns
+tmp_species$Nesp = NULL
+tmp_species$France = NULL
+tmp_species$Turquie = NULL
+tmp_species$Norfolk = NULL
+tmp_species$Devon = NULL
+tmp_species$Group = NULL
+tmp_species$Espagne = NULL
+#rename the columns
+names(tmp_species)[names(tmp_species) == 'Esp'] <-'species'
+names(tmp_species)[names(tmp_species) == 'Scientific name'] <-'scientific_name'
+# now write out at CSV
+write_csv(tmp_species, "~/R-Test/tidy/Norfolk_Bat_Species_list", col_names = TRUE)
+Norfolk_species <- read_csv("~/R-Test/tidy/Norfolk_Bat_Species_list", col_names = TRUE)
+
+
+########  Odds and ends
+names(table(ECC_Records$species))  # gets a list of all the species in the ECC_Records dataframe
+
