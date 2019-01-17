@@ -65,7 +65,10 @@ table(ECC_Records)  #Probably easier
 
 # Summary Statistics
 accuracy_filter <- 0.75  #Change this value to set required accuracy cut-off.  In practice 0.5 is applied by Stuart when agreegating records.
-ECC_Records %>%  filter(., accuracy >= accuracy_filter) %>% group_by((species)) %>% summarise(count = n(), max = max(accuracy), mean = mean(accuracy), min = min(accuracy), std_deviation = sd(accuracy))
+ECC_Records %>%  
+  filter(., accuracy >= accuracy_filter) %>% 
+  group_by((species)) %>% 
+  summarise(count = n(), max = max(accuracy), mean = mean(accuracy), min = min(accuracy), std_deviation = sd(accuracy))
 
 
 ######################### Extract Records for low frequency species #######
@@ -104,7 +107,10 @@ test_df <- mutate(ECC_results_valudation2, Year = as.character.Date(obs_datetime
 #1st by year
 output_df <- test_df %>% group_by(Year, Month, species) %>% select(DoM) %>% summarise( Count = n())
 #Alternatively by species
-output_df <- test_df %>% group_by(species, Year, Month) %>% select(DoM) %>% summarise( Count = n())
+output_df <- test_df %>% 
+  group_by(species, Year, Month) %>% 
+  select(DoM) %>% 
+  summarise( Count = n())
 
 ####### Look for "Next Best" result #####################
 #  Useful to check classification to see if the next best result appeared in earlier / later calls #########
@@ -164,3 +170,6 @@ Norfolk_species <- read_csv("~/R-Test/tidy/Norfolk_Bat_Species_list", col_names 
 ########  Odds and ends
 names(table(ECC_Records$species))  # gets a list of all the species in the ECC_Records dataframe
 
+tbl_Idshort <-
+  +   list.files(pattern = "Idshort.csv", recursive = TRUE) %>% 
+  +   map_df(~read_csv(.))
