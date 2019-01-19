@@ -111,6 +111,11 @@ output_df <- test_df %>%
   group_by(species, Year, Month) %>% 
   select(DoM) %>% 
   summarise( Count = n())
+#Alternative for summary
+output_df <- test_df %>% 
+  group_by(species, Year, Month) %>% 
+  select(DoM) %>% 
+  summarise( Count = n())
 
 ####### Look for "Next Best" result #####################
 #  Useful to check classification to see if the next best result appeared in earlier / later calls #########
@@ -173,3 +178,11 @@ names(table(ECC_Records$species))  # gets a list of all the species in the ECC_R
 tbl_Idshort <-
   +   list.files(pattern = "Idshort.csv", recursive = TRUE) %>% 
   +   map_df(~read_csv(.))
+
+#create a table of dates
+df <- data.frame(date = seq(from = as.Date("2015-01-01"), to = as.Date("2015-12-31"), by = 1))
+
+tmp_df <- filter(tbl_IdTot, tbl_IdTot$filename  %in% tbl_tcResults$filename & tbl_IdTot$SpMaxF2 %in% tbl_tcResults$species & Ind >= 0.5)
+tmp_df %>% 
+  group_by(SpMaxF2) %>% 
+  summarise( Count = n())

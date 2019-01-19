@@ -81,3 +81,53 @@ Cut-off 0.75
 6 Pipnat       2216  0.99 0.884  0.75        0.0681
 7 Pippip      28472  0.99 0.951  0.75        0.0450
 8 Pippyg       2433  0.99 0.948  0.75        0.0491
+=====================================================
+2019-01-28
+Investigation of duplicate records in the input data used for evalution showed
+that all above results were invalid due to data for 2018-08 being counted twice
+and data for 2017-09 being excluded.
+
+Input data was revised to exclude the duplication of data for 2018-08, and add 
+new records for 2018-10 to 2018-12.
+
+After reprocessing the following results are returned:
+Accuracy filer: None all records >= 0.5
+# A tibble: 10 x 6
+   `(species)` count   max  mean   min std_deviation
+   <chr>       <int> <dbl> <dbl> <dbl>         <dbl>
+ 1 Barbar         19  0.99 0.969  0.86        0.0314
+ 2 Eptser        367  0.99 0.876  0.51        0.132 
+ 3 Myodau          7  0.97 0.643  0.5         0.176 
+ 4 Myonat          6  0.99 0.838  0.5         0.216 
+ 5 Nyclei          1  0.54 0.54   0.54       NA     
+ 6 Nycnoc       3040  0.99 0.882  0.5         0.128 
+ 7 Pipnat       2789  0.99 0.834  0.5         0.118 
+ 8 Pippip      29321  0.99 0.937  0.5         0.0789
+ 9 Pippyg       2519  0.99 0.930  0.5         0.0891
+10 Pleaur          1  0.5  0.5    0.5        NA  
+
+Accuracy filter remove where accuracy <0.6
+# A tibble: 8 x 6
+  `(species)` count   max  mean   min std_deviation
+  <chr>       <int> <dbl> <dbl> <dbl>         <dbl>
+1 Barbar         19  0.99 0.969  0.86        0.0314
+2 Eptser        346  0.99 0.895  0.6         0.110 
+3 Myodau          3  0.97 0.807  0.7         0.144 
+4 Myonat          5  0.99 0.906  0.63        0.156 
+5 Nycnoc       2873  0.99 0.902  0.6         0.102 
+6 Pipnat       2653  0.99 0.848  0.6         0.101 
+7 Pippip      28956  0.99 0.942  0.6         0.0661
+8 Pippyg       2478  0.99 0.936  0.6         0.0745
+
+Accuracy filter remove where accuracy <0.75
+# A tibble: 8 x 6
+  `(species)` count   max  mean   min std_deviation
+  <chr>       <int> <dbl> <dbl> <dbl>         <dbl>
+1 Barbar         19  0.99 0.969  0.86        0.0314
+2 Eptser        296  0.99 0.933  0.75        0.0605
+3 Myodau          2  0.97 0.86   0.75        0.156 
+4 Myonat          4  0.99 0.975  0.94        0.0238
+5 Nycnoc       2538  0.99 0.932  0.75        0.0632
+6 Pipnat       2187  0.99 0.884  0.75        0.0681
+7 Pippip      28000  0.99 0.951  0.75        0.0448
+8 Pippyg       2363  0.99 0.948  0.75        0.0486
