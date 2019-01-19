@@ -1,7 +1,7 @@
 #####  Configure Environment 
 
 # Site Specific Information
-site_code <- "ECC"
+site_code <- "ECC" 
 
 #Directories
 d_home <- "/home/rstudio"  #Only vaid for AWS - RStudio - Server
