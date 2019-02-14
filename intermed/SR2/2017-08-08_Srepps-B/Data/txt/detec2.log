@@ -1,0 +1,262 @@
+dtt modefreq=1
+
+
+tOF : 12:18:38:735
+wavfile=SR2_20170615_212003_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:38:885
+wavfile=SR2_20170620_002831_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:39:021
+wavfile=SR2_20170623_212551_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:39:107
+wavfile=SR2_20170624_232323_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:39:231
+wavfile=SR2_20170627_233141_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:39:426
+wavfile=SR2_20170706_014812_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:39:516
+wavfile=SR2_20170710_215612_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:39:611
+wavfile=SR2_20170719_211144_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:39:738
+wavfile=SR2_20170724_210241_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:39:866
+wavfile=SR2_20170728_203113_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:39:981
+wavfile=SR2_20170729_034624_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:40:104
+wavfile=SR2_20170730_013602_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:40:274
+wavfile=SR2_20170731_210515_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:40:350
+wavfile=SR2_20170801_032531_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:40:502
+wavfile=SR2_20170802_204347_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:40:571
+wavfile=SR2_20170802_232334_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:40:714
+wavfile=SR2_20170803_221017_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:40:775
+wavfile=SR2_20170806_222724_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:40:890
+wavfile=SR2_20170807_220711_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:41:044
+wavfile=SR2_20170808_040742_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+endDetec  IThread = 1

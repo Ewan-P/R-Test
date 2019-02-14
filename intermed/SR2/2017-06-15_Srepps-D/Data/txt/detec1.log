@@ -1,0 +1,145 @@
+dtt modefreq=1
+
+
+tOF : 12:18:36:401
+wavfile=SR2_20170505_200807_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:36:608
+wavfile=SR2_20170516_033323_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:36:675
+wavfile=SR2_20170526_030110_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:36:838
+wavfile=SR2_20170528_235050_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:36:963
+wavfile=SR2_20170530_012046_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:37:085
+wavfile=SR2_20170602_205452_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:37:245
+wavfile=SR2_20170603_024630_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:37:324
+wavfile=SR2_20170606_010757_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:37:461
+wavfile=SR2_20170607_210542_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:37:538
+wavfile=SR2_20170608_025135_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:18:37:621
+wavfile=SR2_20170612_213928_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+endDetec  IThread = 0

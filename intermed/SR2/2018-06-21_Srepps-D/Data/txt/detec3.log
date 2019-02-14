@@ -1,0 +1,54 @@
+dtt modefreq=1
+
+
+tOF : 12:25:31:591
+wavfile=SR2_20180530_211335_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:25:31:812
+wavfile=SR2_20180614_224206_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:25:31:936
+wavfile=SR2_20180619_234814_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:25:32:023
+wavfile=SR2_20180621_210547_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+endDetec  IThread = 2

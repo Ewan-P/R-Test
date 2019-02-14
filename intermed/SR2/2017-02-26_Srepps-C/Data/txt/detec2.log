@@ -1,0 +1,15 @@
+dtt modefreq=1
+
+
+tOF : 12:18:35:952
+wavfile=SR2_20170226_190421_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+endDetec  IThread = 1

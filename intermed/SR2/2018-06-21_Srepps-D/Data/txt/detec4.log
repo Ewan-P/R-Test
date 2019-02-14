@@ -1,0 +1,41 @@
+dtt modefreq=1
+
+
+tOF : 12:25:31:623
+wavfile=SR2_20180601_210222_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:25:31:862
+wavfile=SR2_20180614_230117_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+
+
+tOF : 12:25:32:132
+wavfile=SR2_20180620_003936_000.wav
+c:
+g=10
+sfte=192000
+cF
+cN
+sD: 
+dP
+sP
+end of file treatment
+endDetec  IThread = 3

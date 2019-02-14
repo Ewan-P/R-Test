@@ -1,0 +1,36 @@
+ Volume in drive K is BigDisk
+ Volume Serial Number is 08DE-9E3B
+
+ Directory of K:\Ewan\BatAnalysis\Scratch3
+
+29/09/2018  11:40    <DIR>          .
+29/09/2018  11:40    <DIR>          ..
+28/09/2018  11:14    <DIR>          2015-10-22 Srepps - A
+28/09/2018  11:16    <DIR>          2015-11-15 Srepps - B
+28/09/2018  11:17    <DIR>          2015-11-30 Srepps - C
+28/09/2018  11:17    <DIR>          2015-12-06 Srepps - D
+28/09/2018  11:17    <DIR>          2016-01-02 Srepps - A
+28/09/2018  11:18    <DIR>          2016-01-19 Srepps - B
+28/09/2018  11:19    <DIR>          2016-02-14 Srepps - C
+28/09/2018  11:19    <DIR>          2016-03-12 Srepps - B
+28/09/2018  11:20    <DIR>          2016-04-13 Srepps - A
+28/09/2018  11:21    <DIR>          2016-05-23 Srepps - B
+28/09/2018  11:22    <DIR>          2016-07-03 Srepps - D
+28/09/2018  11:22    <DIR>          2016-09-08 Srepps - B
+28/09/2018  11:24    <DIR>          2016-10-16 Srepps - C
+28/09/2018  11:24    <DIR>          2016-11-16 Srepps - A
+28/09/2018  11:24    <DIR>          2017-02-26 Srepps - C
+28/09/2018  11:24    <DIR>          2017-06-15 Srepps - D
+28/09/2018  11:24    <DIR>          2017-08-08 Srepps - B
+28/09/2018  11:24    <DIR>          2017-09-23 Srepps - C
+28/09/2018  11:27    <DIR>          2017-11-27 Srepps - D
+28/09/2018  11:28    <DIR>          2018-03-13 Srepps - B
+28/09/2018  11:28    <DIR>          2018-05-28 Srepps - C
+28/09/2018  11:28    <DIR>          2018-06-21 Srepps - D
+28/09/2018  11:28    <DIR>          2018-07-30 Srepps - A
+29/09/2018  11:40                 0 files.txt
+28/09/2018  11:29         7,735,340 log.txt
+28/09/2018  11:29         3,127,955 meta.csv
+28/09/2018  11:14             4,108 settings.ini
+               4 File(s)     10,867,403 bytes
+              25 Dir(s)  1,380,829,700,096 bytes free
