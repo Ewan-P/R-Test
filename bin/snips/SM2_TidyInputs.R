@@ -10,14 +10,14 @@ tbl_Idshort <-
 write_csv(tbl_Idshort, "~/R-Test/tidy/ECC/ECC_Idshort.csv", col_names = TRUE)
 
 #Consolidate IdTot.csv files
-#these file contain all results of the classifier for bats + other species.
-#after import the non-bat related information should be removed in order to limit the file size and associated processing time
+  #these file contain all results of the classifier for bats + other species.
+  #after import the non-bat related information should be removed in order to limit the file size and associated processing time
 tbl_IdTot <-
   list.files(path = as.character(d_intermed), pattern = "IdTot.csv", recursive = TRUE, full.names = TRUE) %>% 
   map_df(~read_csv(.))
-tbl_IdTot <- filter(tbl_IdTot, tbl_IdTot$SpMaxF2 %in% species_list$species)
+tbl_IdTot <- filter(tbl_IdTot, tbl_IdTot$SpMaxF2 %in% species_list$species) # Remove all rows where non-bat species are most likely
 names(tbl_IdTot)[1] <- "filename" #the first column of the .csv is called Group1, replace this with "filename"
-tbl_IdTot <- tbl_IdTot[,(names(tbl_IdTot) %in% columns2keep)]
+tbl_IdTot <- tbl_IdTot[,(names(tbl_IdTot) %in% columns2keep)] #Now remove columns for non-bat species
 write_csv(tbl_IdTot, paste(as.character(d_tidy), "/", "ECC_IdTot.csv", sep = ""), col_names = TRUE)
 
 # Consolidate txt_classifier_results.csv

@@ -182,7 +182,63 @@ tbl_Idshort <-
 #create a table of dates
 df <- data.frame(date = seq(from = as.Date("2015-01-01"), to = as.Date("2015-12-31"), by = 1))
 
-tmp_df <- filter(tbl_IdTot, tbl_IdTot$filename  %in% tbl_tcResults$filename & tbl_IdTot$SpMaxF2 %in% tbl_tcResults$species & Ind >= 0.5)
-tmp_df %>% 
-  group_by(SpMaxF2) %>% 
-  summarise( Count = n())
+# Still trying to extract a row to analyse
+  #Example https://stackoverflow.com/questions/42492517/column-name-and-value-of-second-highest-values
+DT$second_highest = colnames(DT)[2+apply(DT[,3:8], 1, function(x)
+  which(x != 0 & x == sort(x, decreasing = TRUE)[2])[1])]
+
+  # Promissing alternative
+  # https://stackoverflow.com/questions/10296866/finding-the-column-number-and-value-the-of-second-highest-value-in-a-row
+maxn <- function(n) function(x) order(x, decreasing = TRUE)[n]
+apply(test_IdTot, 1, maxn(2))
+
+####### Sampling of records for valuidation
+# Objective to return for each species up to 10 records for each accuracy interval 
+# 0.5 - 0.59, 0.6 - 0.69 etc.
+# This is easy to achieve using summarise and sample_n EXCEPT when there are less 
+# than 10 rows in the interval.
+# A logical test should resolve this however summarise (n()) doesn't work. see:
+# https://stackoverflow.com/questions/22801153/dplyr-error-in-n-function-should-not-be-called-directly
+tmp <- tbl_tcResults %>%
+  group_by(species, round(accuracy * 10)) %>%
+  #summarise(n= n()) %>%
+  sample_n( size = summarise(n = n()))
+
+  # possible alternative
+  # https://stackoverflow.com/questions/23831711/sample-n-random-rows-per-group-in-a-dataframe
+tmp <- lapply(split(tbl_tcResults,tbl_tcResults$species),
+              function(subdf) subdf[sample(1:nrow(subdf), 1),]
+)
+  #The above creates a list containing a dataframe for each species
+  #Initially this had problems with sample which would barf if there were less than n rows
+  #for a species.
+  # the following appears to address this:
+tmp <- lapply( split( tbl_tcResults, tbl_tcResults$species),
+              function(subdf) 
+                subdf[sample(1:nrow(subdf), if (nrow(subdf) < 10) nrow(subdf) else 10 ),]
+)  
+  #the if statemnet returns either the number of rows in the sub sample or 10 rows
+  #this returns in tmp a list of dataframes.
+  #those can be combined into a single dataframe using
+tmp <- do.call('rbind', tmp) 
+# or combined with above into a single snip:>
+tmp <- lapply( split( tbl_tcResults, tbl_tcResults$species),
+               function(subdf) 
+                 subdf[sample(1:nrow(subdf), if (nrow(subdf) < 10) nrow(subdf) else 10 ),]
+)  
+tmp <- do.call( 'rbind', tmp)
+#End Snip++++++++++++++++++++++++++++++++++++
+  #Now try to subset on accuracy as well
+tmp <- lapply( split( tbl_tcResults, tbl_tcResults$species),
+               lapply( split(tbl_tcResults, round(tbl_tcResults$accuracy * 10)),
+                       function(subdf) 
+                         subdf[sample(1:nrow(subdf), if (nrow(subdf) < 10) nrow(subdf) else 10 ),]
+               ))   
+# This didn't work
+
+
+tmp <- tbl_tcResults %>%
+  group_by(species, round(accuracy * 10)) %>%
+  #summarise(n= n()) %>%
+  function(subdf) 
+    subdf[sample(1:nrow(subdf), if (nrow(subdf) < 10) nrow(subdf) else 10 ),]
