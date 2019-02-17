@@ -2,14 +2,15 @@
 #####  Configure Environment 
 
 # Site Specific Information
-site_code <- "ECC" 
+site_code <- "ECC" #See below for alternatives
+validsitecodes <- c("SR2","ECC")
 
 #Directories
-d_home <- "/home/rstudio"  #Only vaid for AWS - RStudio - Server
-d_raw <- "/home/rstudio/R-Test/raw/ECC" #Only vaid for AWS - RStudio - Server
-d_intermed <- "/home/rstudio/R-Test/intermed/ECC"  #Only vaid for AWS - RStudio - Server
-d_tidy <- "/home/rstudio/R-Test/tidy/ECC"   #Only vaid for AWS - RStudio - Server
-d_output <- "/home/rstudio/R-test/output"   #Only vaid for AWS - RStudio - Server
+d_home <- "/home/rstudio/R-Test/"  #Only vaid for AWS - RStudio - Server
+d_raw <- paste(d_home, "raw/", site_code, "/", sep = "") #Only vaid for AWS - RStudio - Server
+d_intermed <- paste(d_home, "intermed/", site_code, "/", sep = "")  #Only vaid for AWS - RStudio - Server
+d_tidy <- paste(d_home, "tidy/", site_code, "/", sep = "") #Only valid for AWS - RStudio - Server
+d_output <- paste(d_home, "output/", sep = "")   #Only vaid for AWS - RStudio - Server
 
 #  Use tidyvers functions
 library(readr)
@@ -18,7 +19,7 @@ library(purrr)
 library(lubridate)
 
 #Evaluation parameters
-accuracy_filter <- 0.6  #Change this value to set required accuracy cut-off. In practice 0.5 is applied by Stuart when agreegating records.
+accuracy_filter <- 0.5 #Change this value to set required accuracy cut-off. In practice 0.5 is applied by Stuart when agreegating records.
 columns2keep <- c("filename", "Barbar", "Eptser", "Myoalc", "Myobec", "Myobra", 
                   "Myodau", "Myomys", "Myonat", "Nyclei", "Nycnoc", "Pipnat", 
                   "Pippip", "Pippyg", "Pleaur", "Rhifer", "Rhihip", "FreqM", 

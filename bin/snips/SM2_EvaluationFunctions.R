@@ -22,7 +22,7 @@ tt <- table(ECC_Records$species)  #This creates a temporary vector listing all s
 ECC_results_valudation <- subset(ECC_Records, species %in% names(tt[tt <= 20])) #Here the criterion is 30
 table(ECC_Records$species)
 ############# Add columns to dataframe for validation of records ##############
-## NB This code needs to be modified to remove site referene "EE" etc and can be simplified
+## NB This code needs to be modified to remove site reference "ECC" etc and can be simplified
 ECC_results_valudation$to_validate <- TRUE  #Logical to indicate the record is to be validated
 ECC_results_valudation$autoID_validate <- FALSE  #Logical to indicate if the auto ID is valid
 ECC_results_valudation$species_val <- "-" #Char for validator to enter alternative species
