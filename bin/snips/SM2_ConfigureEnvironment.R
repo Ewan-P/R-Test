@@ -2,7 +2,7 @@
 #####  Configure Environment 
 
 # Site Specific Information
-site_code <- "ECC" #See below for alternatives
+site_code <- "SR2" #See below for alternatives
 validsitecodes <- c("SR2","ECC")
 
 #Directories

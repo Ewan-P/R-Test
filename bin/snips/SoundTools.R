@@ -242,3 +242,21 @@ tmp <- tbl_tcResults %>%
   #summarise(n= n()) %>%
   function(subdf) 
     subdf[sample(1:nrow(subdf), if (nrow(subdf) < 10) nrow(subdf) else 10 ),]
+
+############# Duplicate Processing
+#
+# Following codes may be useful for dealing with duplicates in the tbl_tcResults dataframe
+# Duplicated records can arrise for a number of reasons, i.e.
+#   1)  Not being erased when a card is downloaded so that file are re-loaded when the card is reused.
+#   2)  Manual errors when copying files/ directories
+#   3)  ...
+
+
+# The following will generate a list of the files that are duplicated.
+t_dups_details <- list.files(path = as.character(d_intermed), pattern = "txt_classifier_results.csv", recursive = TRUE, full.names = TRUE) %>% 
+  lapply(., function(x) c(x, nrow( read_csv(x))))
+
+#  When the file name has been identified it can be best to use the "System" shell to search for the files e.g. using:
+system(("find . | grep SR2_20170511")) #which will search for each instance of "SR2_20170511"
+
+
