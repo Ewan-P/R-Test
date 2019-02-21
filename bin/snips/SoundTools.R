@@ -259,4 +259,13 @@ t_dups_details <- list.files(path = as.character(d_intermed), pattern = "txt_cla
 #  When the file name has been identified it can be best to use the "System" shell to search for the files e.g. using:
 system(("find . | grep SR2_20170511")) #which will search for each instance of "SR2_20170511"
 
+############### Clean up functions
+# Cleanup packages
+# http://r.789695.n4.nabble.com/Reset-R-s-library-to-base-packages-only-remove-all-installed-contributed-packages-td3596151.html
 
+ip <- installed.packages()
+pkgs.to.remove <- ip[!(ip[,"Priority"] %in% c("base", "recommended")), 1] 
+
+# Clear global environment
+# https://github.com/KevBarre/Semi-automated-method-to-account-for-identification-errors-in-biological-acoustic-surveys/blob/master/4_ErrorRate.R
+rm(list = ls()) 

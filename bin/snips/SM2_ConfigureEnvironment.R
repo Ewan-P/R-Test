@@ -1,6 +1,16 @@
 
 #####  Configure Environment 
 
+# Cleanup packages
+# http://r.789695.n4.nabble.com/Reset-R-s-library-to-base-packages-only-remove-all-installed-contributed-packages-td3596151.html
+
+ip <- installed.packages()
+pkgs.to.remove <- ip[!(ip[,"Priority"] %in% c("base", "recommended")), 1] 
+
+# Clear global environment
+# https://github.com/KevBarre/Semi-automated-method-to-account-for-identification-errors-in-biological-acoustic-surveys/blob/master/4_ErrorRate.R
+rm(list = ls()) 
+
 # Site Specific Information
 site_code <- "SR2" #See below for alternatives
 validsitecodes <- c("SR2","ECC")
@@ -13,6 +23,7 @@ d_tidy <- paste(d_home, "tidy/", site_code, "/", sep = "") #Only valid for AWS -
 d_output <- paste(d_home, "output/", sep = "")   #Only vaid for AWS - RStudio - Server
 
 #  Use tidyvers functions
+library(tidyverse)
 library(readr)
 library(dplyr)
 library(purrr)
