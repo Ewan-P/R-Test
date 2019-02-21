@@ -1,0 +1,3 @@
+site_code, lat, long, timezone, gridref, active, longname, distforest, disturban, distwetland, x93, y93, hedgerowlength, edgetype
+ECC, 52.799720, 1.585386, UTC, TG 41485 28630, yes, Eccles Dunes,,,,,,,
+SR2, 52.867006, 1.358510, UTC, TG 25858 35277, yes, Southrepps Dowlands,,,,,,,
