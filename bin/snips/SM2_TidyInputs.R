@@ -16,7 +16,7 @@ tbl_Idshort <-
     recursive = TRUE,
     full.names = TRUE
   ) %>%
-  map_df( ~ read_csv(.))
+  map_df(~ read_csv(.))
 write_csv(tbl_Idshort,
           paste(d_tidy, site_code, "_Idshort.csv", sep = ""),
           col_names = TRUE)
@@ -31,11 +31,11 @@ tbl_IdTot <-
     recursive = TRUE,
     full.names = TRUE
   ) %>%
-  map_df(~ read_csv(.))
+  map_df( ~ read_csv(.))
 
 # Remove all rows where non-bat species are most likely
 tbl_IdTot <-
-  filter(tbl_IdTot, tbl_IdTot$SpMaxF2 %in% species_list$species) 
+  filter(tbl_IdTot, tbl_IdTot$SpMaxF2 %in% species_list$species)
 names(tbl_IdTot)[1] <-
   "filename" #the first column of the .csv is called Group1, replace this with "filename"
 tbl_IdTot <-
@@ -97,39 +97,23 @@ if (n_distinct(tbl_tcResults) == count(tbl_tcResults)) {
 #After importing, combining, and cleaning the data, it should be writen as "site_code_Sensor.csv¨ to the tidy/site_code directory.
 
 #First Combine all sensor.txt files into one dataframe
-temp <-
-    if (site_code == "ECC") {
-      list.files(
-        path = as.character(d_raw),
-        pattern = paste(site_code, "_Sensor-*", sep = ""),
-        recursive = TRUE,
-        include.dirs = TRUE)
-    } else {
-      list.files(
-        path = as.character(d_intermed),
-        pattern = paste(site_code, "_Sensor-*", sep = ""),
-        recursive = TRUE,
-        include.dirs = TRUE)
-    }
+sensors <-
+  list.files(
+    path = as.character(d_intermed),
+    paste(site_code, "_Sensor-*", sep = ""),
+    recursive = TRUE,
+    full.names = TRUE
+  ) %>%
+  map_df( ~ read.delim2(., header = FALSE, sep = "\t")) %>%
+  select(
+    .,
+    ObsDate = V1,
+    ObsTime = V2,
+    IntTemperature = V3,
+    ExtTemperature = V4
+  )
 
-tempfiles <-
-  do.call(rbind, lapply(temp, function(x)
-    read.delim(paste(path, x, sep = ""), header = FALSE, sep = "\t")))
-
-# Column names will be V1 to V6 although V5 & V6 will be NA unless there is an 
-# external termperature sensor fitted
-# remove these last two columns by setting name to NA
-tempfiles$V5 <- NULL
-tempfiles$V6 <- NULL
-
-#Now rename the columns
-names(tempfiles)[names(tempfiles) == "V1"] <- "ObsDate"
-names(tempfiles)[names(tempfiles) == "V2"] <- "ObsTime"
-names(tempfiles)[names(tempfiles) == "V3"] <- "IntTemperature"
-names(tempfiles)[names(tempfiles) == "V4"] <- "ExtTemperature"
-
-#Now write the dataframe to a csv file
-write.csv(tempfiles,
+write.csv(sensors,
           paste(d_tidy, site_code, "_Sensors.csv", sep = ""),
           row.names = FALSE)
 
@@ -143,7 +127,7 @@ tbl_mtStatus <-
     recursive = TRUE,
     full.names = TRUE
   ) %>%
-  map_df( ~ read_csv(.))
+  map_df(~ read_csv(.))
 
 ####### Import NorfolkBatList =====================
 tbl_NorBatList <-
@@ -153,4 +137,4 @@ tbl_NorBatList <-
     recursive = TRUE,
     full.names = TRUE
   ) %>%
-  map_df( ~ read_csv(.))
+  map_df(~ read_csv(.))

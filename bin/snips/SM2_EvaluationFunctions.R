@@ -2,16 +2,16 @@
 
 # Summary Statistics
 tbl_tcResults %>%  
-  filter(., accuracy >= accuracy_filter) %>% 
+  filter(., confidence >= confidence_filter) %>% 
   group_by((species)) %>% 
-  summarise(count = n(), max = max(accuracy), mean = mean(accuracy), min = min(accuracy), std_deviation = sd(accuracy))
+  summarise(count = n(), max = max(confidence), mean = mean(confidence), min = min(confidence), std_deviation = sd(confidence))
 
 # Monthly Summary, results writen to tbl_mnlyStats
 # There must be a better way to group by year/ month
 tbl_mnlyStats <- tbl_tcResults %>%  
-  filter(., accuracy >= accuracy_filter) %>% 
+  filter(., confidence >= confidence_filter) %>% 
   group_by(year(as.Date(obs_datetime, "%Y-%m-%d")), month(as.Date(obs_datetime, "%Y-%m-%d")),species) %>% 
-  summarise(count = n(), max = max(accuracy), mean = mean(accuracy), min = min(accuracy), std_deviation = sd(accuracy))
+  summarise(count = n(), max = max(confidence), mean = mean(confidence), min = min(confidence), std_deviation = sd(confidence))
 names(tbl_mnlyStats)[1] <- "Year"
 names(tbl_mnlyStats)[2] <- "Month"
 

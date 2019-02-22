@@ -3,7 +3,6 @@
 
 # Cleanup packages
 # http://r.789695.n4.nabble.com/Reset-R-s-library-to-base-packages-only-remove-all-installed-contributed-packages-td3596151.html
-
 ip <- installed.packages()
 pkgs.to.remove <- ip[!(ip[,"Priority"] %in% c("base", "recommended")), 1] 
 
@@ -30,7 +29,8 @@ library(purrr)
 library(lubridate)
 
 #Evaluation parameters
-accuracy_filter <- 0.5 #Change this value to set required accuracy cut-off. In practice 0.5 is applied by Stuart when agreegating records.
+confidence_filter <- 0.5 #Change this value to set required confidence interval cut-off. In practice 0.5 is applied by Stuart when agreegating records.
+records_to_validate <- 25 # As Barre et. al.  NB SEN recommends 10 records
 columns2keep <- c("filename", "Barbar", "Eptser", "Myoalc", "Myobec", "Myobra", 
                   "Myodau", "Myomys", "Myonat", "Nyclei", "Nycnoc", "Pipnat", 
                   "Pippip", "Pippyg", "Pleaur", "Rhifer", "Rhihip", "FreqM", 
