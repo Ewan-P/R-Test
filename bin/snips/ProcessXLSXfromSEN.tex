@@ -1,0 +1,558 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={ProcessXLSXfromSEN.R},
+            pdfauthor={rstudio},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{ProcessXLSXfromSEN.R}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{rstudio}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{Mon Mar 4 22:04:46 2019}
+
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{################ Process xlsx from Stuart}
+\CommentTok{# Routines to import and process xlsx files for ECC and Southrepps as supplied by SEN}
+\CommentTok{# EAP 2019-02-14}
+\CommentTok{# Files are called}
+\CommentTok{#   2019-02-12_SN_EP_Classifier_results_SRepp.xlsx, and}
+\CommentTok{#   2019-02-12_SN_EP_Classifier_results_Eccles.xlsx}
+\NormalTok{##  Update ## 2019-02-28 a further file recieved for Southrepps for 2016 - 2018,}
+\NormalTok{##  Update ## 2019-02-28, this file is called}
+\CommentTok{#   2019-02-28_SN_EAP_Classifier_results_Southrepps2.xlsx}
+\CommentTok{#}
+\CommentTok{# Files are delivered as Microsoft Excel .xlsx format}
+\CommentTok{# Files have the following structure}
+\CommentTok{#   filename        : chr > character string, see below for details.}
+\CommentTok{#   species         : chr > 6 character string with species code}
+\CommentTok{#   confidence_index: num > Confidence index assigned by the classifier range 0.00 to 1.00 (0.99?)}
+\CommentTok{#   real_error      : num > Relative Error calculated by the classifier range 0.00 to 1.00 (0.99?) See Barrre et.al. 2018}
+\CommentTok{#}
+\CommentTok{# Structure of values in the filename column:}
+\CommentTok{#   XXX             : chr > 3 digit site code  SR2 = Southrepps (Dowlands), ECC == Eccls}
+\CommentTok{#   _               : chr > separator}
+\CommentTok{#   yyyymmdd        : num > date of recording (assigned by SM2) ISO format}
+\CommentTok{#   _               : chr > separator}
+\CommentTok{#   hhmmss          : num > time of recording (assigned by SM2 no DST correction applied. hours since midnight)}
+\CommentTok{#   _               : chr > separator}
+\CommentTok{#   NNN              : num > 3 digit number assigned by classifier, thought to be the call number in the recording file.}
+\CommentTok{#}
+\CommentTok{# Processing will be required to:}
+\CommentTok{#   load data xlsx into a data.frame}
+\CommentTok{#   extract date & time from filename}
+\CommentTok{#   create new column fo observation date/time}
+\CommentTok{#}
+\CommentTok{# Input file are located in the following locations:}
+\CommentTok{#   ~/R-Test/intermed/ECC, and}
+\CommentTok{#   ~/R-Test/intermed/SR2}
+\CommentTok{#}
+\CommentTok{# Output files will be writen to the following locations:}
+\CommentTok{#   ~/R-Test/tidy/ECC, and}
+\CommentTok{#   ~/R-Test/tidy/SR2}
+\CommentTok{#}
+\CommentTok{# Output files will have the following structure:}
+\CommentTok{#   2019-02-12_SEN_Evaluation_XXX.csv : where XXX is either ECC or SR2 as relevant}
+\CommentTok{#}
+\NormalTok{########  CONFIG Follows ##########################}
+
+\CommentTok{# Load required libraries}
+
+\CommentTok{# Load tidyvers functions}
+\CommentTok{#if (!require(tidyverse)) install.packages('tidyverse')}
+\CommentTok{#library(tidyverse)}
+\CommentTok{#library(readr)}
+\CommentTok{#library(dplyr)}
+\CommentTok{#library(purrr)}
+\KeywordTok{library}\NormalTok{(lubridate)}
+\KeywordTok{library}\NormalTok{(readxl) }\CommentTok{#Needed to process xlxs files}
+\KeywordTok{library}\NormalTok{(knitr)}
+
+\CommentTok{#Evaluation parameters}
+\NormalTok{re_threshold <-}
+\StringTok{  }\FloatTok{0.5} \CommentTok{#Change this value to set required accuracy cut-off.}
+\CommentTok{#In practice 0.5 is applied by Stuart when agreegating records.}
+\NormalTok{save_csv <-}
+\StringTok{  }\OtherTok{TRUE} \CommentTok{#Change to FALSE if you don't want to create a new csv file}
+\NormalTok{site_code <-}\StringTok{ "SR2"} \CommentTok{#See below for alternatives}
+\NormalTok{input_file_name <-}
+\StringTok{  "2019-02-28_SN_EAP_Classifier_results_Southrepps2.xlsx"}
+\NormalTok{output_file_name <-}\StringTok{ "2019-02-28_SEN_Evaluation_SR2.csv"}
+
+\CommentTok{#Directories  NB these are only vaid for AWS - RStudio - Server}
+\NormalTok{d_home <-}\StringTok{ "~/R-Test/"}
+\NormalTok{d_raw <-}\StringTok{  }\KeywordTok{paste}\NormalTok{(d_home, }\StringTok{"raw/"}\NormalTok{, site_code, }\StringTok{"/"}\NormalTok{, }\DataTypeTok{sep =} \StringTok{""}\NormalTok{)}
+\NormalTok{d_intermed <-}\StringTok{ }\KeywordTok{paste}\NormalTok{(d_home, }\StringTok{"intermed/"}\NormalTok{, site_code, }\StringTok{"/"}\NormalTok{, }\DataTypeTok{sep =} \StringTok{""}\NormalTok{)}
+\NormalTok{d_tidy <-}\StringTok{ }\KeywordTok{paste}\NormalTok{(d_home, }\StringTok{"tidy/"}\NormalTok{, site_code, }\StringTok{"/"}\NormalTok{, }\DataTypeTok{sep =} \StringTok{""}\NormalTok{)}
+\NormalTok{d_output <-}\StringTok{   }\KeywordTok{paste}\NormalTok{(d_home, }\StringTok{"output/"}\NormalTok{, }\DataTypeTok{sep =} \StringTok{""}\NormalTok{)}
+
+
+\CommentTok{# Site Specific Information}
+\NormalTok{validsitecodes <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"SR2"}\NormalTok{, }\StringTok{"ECC"}\NormalTok{)}
+
+
+\NormalTok{########  CODE Follows ##########################}
+\CommentTok{# Check if we have a valid site code}
+\ControlFlowTok{if}\NormalTok{ (}\OperatorTok{!}\NormalTok{(site_code }\OperatorTok{%in%}\StringTok{ }\NormalTok{validsitecodes))  \{}
+  \KeywordTok{stop}\NormalTok{(}\StringTok{"Invalid Site Code"}\NormalTok{)}
+\NormalTok{\}}
+
+
+\CommentTok{# Configure Environment & paths etc.}
+\KeywordTok{setwd}\NormalTok{(d_home)}
+\KeywordTok{getwd}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "/home/rstudio/R-Test"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# NB  Following are hard coded paths rather than derived from site_code}
+\NormalTok{tmp_sourcefile <-}
+\StringTok{  }\KeywordTok{paste}\NormalTok{(d_intermed,}
+\NormalTok{        input_file_name,}
+        \DataTypeTok{sep =} \StringTok{""}\NormalTok{)}
+\NormalTok{tmp_outputfile <-}
+\StringTok{  }\KeywordTok{paste}\NormalTok{(d_tidy,}
+\NormalTok{        output_file_name,}
+        \DataTypeTok{sep =} \StringTok{""}\NormalTok{)}
+
+\CommentTok{# Read the input file}
+\NormalTok{tmp_SNclassifier_results <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(tmp_sourcefile)}
+
+
+\NormalTok{tmp_SNclassifier_results <-}
+\StringTok{  }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{obs_datetime =} \KeywordTok{as.POSIXct}\NormalTok{(}\KeywordTok{gsub}\NormalTok{(}
+    \StringTok{"_"}\NormalTok{, }\StringTok{""}\NormalTok{, }\KeywordTok{substr}\NormalTok{(tmp_SNclassifier_results}\OperatorTok{$}\NormalTok{filename, }\DecValTok{5}\NormalTok{, }\DecValTok{19}\NormalTok{)}
+\NormalTok{  ), }\DataTypeTok{format =} \StringTok{"%Y%m%d%H%M%S"}\NormalTok{),}
+\NormalTok{  tmp_SNclassifier_results) }\CommentTok{# Create the Date-Time column}
+
+
+\CommentTok{#write results to csv}
+\ControlFlowTok{if}\NormalTok{ (save_csv }\OperatorTok{==}\StringTok{ }\OtherTok{TRUE}\NormalTok{) \{}
+  \KeywordTok{write_csv}\NormalTok{(tmp_SNclassifier_results, tmp_outputfile, }\DataTypeTok{col_names =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{\}}
+
+\CommentTok{# Monthly Summary, results writen to tbl_mnlyStats}
+
+\NormalTok{tbl_mnlyStats <-}\StringTok{ }\NormalTok{tmp_SNclassifier_results }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(., real_error }\OperatorTok{>=}\StringTok{ }\NormalTok{re_threshold) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(}\KeywordTok{year}\NormalTok{(}\KeywordTok{as.Date}\NormalTok{(obs_datetime, }\StringTok{"%Y-%m-%d"}\NormalTok{)),}
+           \KeywordTok{month}\NormalTok{(}\KeywordTok{as.Date}\NormalTok{(obs_datetime, }\StringTok{"%Y-%m-%d"}\NormalTok{)),}
+\NormalTok{           species) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{summarise}\NormalTok{(}
+    \DataTypeTok{count =} \KeywordTok{n}\NormalTok{(),}
+    \DataTypeTok{max =} \KeywordTok{max}\NormalTok{(confidence_index),}
+    \DataTypeTok{mean =} \KeywordTok{round}\NormalTok{(}\KeywordTok{mean}\NormalTok{(confidence_index), }\DecValTok{2}\NormalTok{),}
+    \DataTypeTok{min =} \KeywordTok{min}\NormalTok{(confidence_index),}
+    \DataTypeTok{std_dev =} \KeywordTok{round}\NormalTok{(}\KeywordTok{sd}\NormalTok{(confidence_index), }\DecValTok{2}\NormalTok{)}
+\NormalTok{  )}
+\KeywordTok{names}\NormalTok{(tbl_mnlyStats)[}\DecValTok{1}\NormalTok{] <-}\StringTok{ "Year"}
+\KeywordTok{names}\NormalTok{(tbl_mnlyStats)[}\DecValTok{2}\NormalTok{] <-}\StringTok{ "Month"}
+\NormalTok{tbl_mnlyStats <-}\StringTok{ }\KeywordTok{as.data.frame}\NormalTok{(tbl_mnlyStats)}
+
+
+\CommentTok{#Now generate species summaries}
+\NormalTok{species_found <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(tbl_mnlyStats}\OperatorTok{$}\NormalTok{species)}
+\KeywordTok{print}\NormalTok{(}\KeywordTok{paste}\NormalTok{(site_code, }\StringTok{"Evaluation by SN"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "SR2 Evaluation by SN"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (row }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(species_found)) \{}
+\NormalTok{  tmp_species <-}
+\StringTok{    }\KeywordTok{filter}\NormalTok{(tbl_mnlyStats, species }\OperatorTok{==}\StringTok{ }\NormalTok{species_found[row])}
+  \KeywordTok{print}\NormalTok{(knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(tmp_species))}
+  
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 
+##  Year   Month  species    count    max   mean    min   std_dev
+## -----  ------  --------  ------  -----  -----  -----  --------
+##  2016       9  Barbar        15   0.99   0.93   0.48      0.15
+##  2016      10  Barbar         6   0.99   0.99   0.99      0.00
+##  2017       8  Barbar         3   0.99   0.99   0.99      0.00
+##  2017       9  Barbar        13   0.99   0.97   0.84      0.04
+##  2017      10  Barbar        24   0.99   0.95   0.70      0.07
+##  2018       1  Barbar         1   0.99   0.99   0.99        NA
+##  2018       3  Barbar         1   0.84   0.84   0.84        NA
+##  2018       4  Barbar         1   0.17   0.17   0.17        NA
+##  2018       7  Barbar         1   0.99   0.99   0.99        NA
+##  2018       8  Barbar         7   0.99   0.88   0.52      0.18
+##  2018       9  Barbar         7   0.99   0.99   0.98      0.00
+##  2018      10  Barbar         7   0.99   0.99   0.99      0.00
+##  2018      11  Barbar         1   0.98   0.98   0.98        NA
+## 
+## 
+##  Year   Month  species    count    max   mean    min   std_dev
+## -----  ------  --------  ------  -----  -----  -----  --------
+##  2016       9  Myodau        26   0.99   0.77   0.42      0.18
+##  2016      10  Myodau        10   0.96   0.71   0.39      0.22
+##  2016      11  Myodau         5   0.93   0.67   0.50      0.16
+##  2017       3  Myodau         3   0.91   0.60   0.44      0.27
+##  2017       8  Myodau        12   0.94   0.72   0.43      0.20
+##  2017       9  Myodau        27   0.98   0.74   0.40      0.17
+##  2017      10  Myodau        15   0.97   0.80   0.52      0.14
+##  2017      11  Myodau         4   0.95   0.69   0.41      0.28
+##  2018       1  Myodau         4   0.98   0.66   0.39      0.26
+##  2018       3  Myodau         2   0.89   0.74   0.59      0.21
+##  2018       4  Myodau         4   0.93   0.67   0.49      0.19
+##  2018       5  Myodau         2   0.91   0.70   0.50      0.29
+##  2018       7  Myodau         1   0.83   0.83   0.83        NA
+##  2018       8  Myodau         9   0.98   0.85   0.63      0.14
+##  2018       9  Myodau         5   0.95   0.87   0.73      0.10
+##  2018      10  Myodau         6   0.93   0.76   0.46      0.17
+## 
+## 
+##  Year   Month  species    count    max   mean    min   std_dev
+## -----  ------  --------  ------  -----  -----  -----  --------
+##  2016       9  Myonat         4   0.99   0.85   0.78      0.09
+##  2016      10  Myonat         5   0.98   0.88   0.76      0.10
+##  2016      11  Myonat         2   0.99   0.94   0.88      0.08
+##  2017       8  Myonat         3   0.99   0.97   0.94      0.03
+##  2017       9  Myonat         7   0.99   0.95   0.85      0.05
+##  2017      10  Myonat         7   0.99   0.90   0.80      0.07
+##  2017      11  Myonat         7   0.99   0.92   0.79      0.08
+##  2018       1  Myonat         4   0.98   0.81   0.72      0.12
+##  2018       5  Myonat         2   0.96   0.84   0.71      0.18
+##  2018       7  Myonat        37   0.99   0.99   0.88      0.02
+##  2018       8  Myonat        48   0.99   0.97   0.72      0.05
+##  2018       9  Myonat        19   0.99   0.97   0.89      0.03
+##  2018      10  Myonat        22   0.99   0.96   0.79      0.05
+##  2018      11  Myonat         5   0.96   0.86   0.72      0.13
+## 
+## 
+##  Year   Month  species    count    max   mean    min   std_dev
+## -----  ------  --------  ------  -----  -----  -----  --------
+##  2016       9  Nycnoc         7   0.99   0.92   0.72      0.09
+##  2016      10  Nycnoc         2   0.76   0.70   0.65      0.08
+##  2017       8  Nycnoc        18   0.99   0.85   0.63      0.13
+##  2017       9  Nycnoc        20   0.99   0.83   0.64      0.12
+##  2017      10  Nycnoc        19   0.99   0.93   0.68      0.09
+##  2018       7  Nycnoc        64   0.99   0.92   0.63      0.09
+##  2018       8  Nycnoc        44   0.99   0.90   0.65      0.10
+##  2018       9  Nycnoc        12   0.99   0.84   0.63      0.13
+##  2018      10  Nycnoc        18   0.99   0.91   0.69      0.08
+##  2018      11  Nycnoc         3   0.99   0.91   0.77      0.12
+## 
+## 
+##  Year   Month  species    count    max   mean    min   std_dev
+## -----  ------  --------  ------  -----  -----  -----  --------
+##  2016       9  Pipnat         7   0.87   0.73   0.55      0.10
+##  2017       9  Pipnat         2   0.82   0.78   0.74      0.06
+##  2017      10  Pipnat         3   0.84   0.66   0.50      0.17
+##  2018       4  Pipnat         2   0.85   0.70   0.56      0.21
+##  2018       5  Pipnat         1   0.70   0.70   0.70        NA
+##  2018       7  Pipnat         6   0.93   0.78   0.55      0.18
+##  2018       8  Pipnat         4   0.97   0.85   0.74      0.10
+##  2018       9  Pipnat         3   0.94   0.92   0.90      0.02
+##  2018      10  Pipnat         3   0.87   0.65   0.52      0.19
+## 
+## 
+##  Year   Month  species    count    max   mean    min   std_dev
+## -----  ------  --------  ------  -----  -----  -----  --------
+##  2016       9  Pippip       106   0.99   0.93   0.38      0.12
+##  2016      10  Pippip        43   0.99   0.94   0.51      0.10
+##  2016      11  Pippip        11   0.98   0.91   0.39      0.17
+##  2017       2  Pippip         1   0.97   0.97   0.97        NA
+##  2017       3  Pippip         6   0.99   0.98   0.97      0.01
+##  2017       4  Pippip         3   0.99   0.98   0.97      0.01
+##  2017       5  Pippip        14   0.99   0.91   0.49      0.14
+##  2017       6  Pippip        37   0.99   0.93   0.72      0.06
+##  2017       7  Pippip        28   0.99   0.96   0.84      0.03
+##  2017       8  Pippip       973   0.99   0.96   0.57      0.03
+##  2017       9  Pippip      1567   0.99   0.96   0.41      0.04
+##  2017      10  Pippip       187   0.99   0.95   0.55      0.08
+##  2017      11  Pippip        26   0.99   0.96   0.83      0.04
+##  2017      12  Pippip         2   0.98   0.98   0.98      0.00
+##  2018       1  Pippip        22   0.99   0.97   0.93      0.02
+##  2018       2  Pippip         4   0.98   0.96   0.93      0.02
+##  2018       3  Pippip        11   0.99   0.98   0.96      0.01
+##  2018       4  Pippip        29   0.99   0.94   0.62      0.08
+##  2018       5  Pippip       103   0.99   0.95   0.61      0.06
+##  2018       7  Pippip       665   0.99   0.92   0.38      0.12
+##  2018       8  Pippip       262   0.99   0.92   0.45      0.10
+##  2018       9  Pippip        69   0.99   0.95   0.57      0.08
+##  2018      10  Pippip        97   0.99   0.95   0.60      0.07
+##  2018      11  Pippip        27   0.99   0.95   0.81      0.05
+##  2018      12  Pippip         4   0.99   0.98   0.95      0.02
+## 
+## 
+##  Year   Month  species    count    max   mean    min   std_dev
+## -----  ------  --------  ------  -----  -----  -----  --------
+##  2016       9  Pippyg        52   0.99   0.93   0.44      0.11
+##  2016      10  Pippyg        11   0.99   0.93   0.71      0.09
+##  2016      11  Pippyg         5   0.98   0.94   0.86      0.05
+##  2017       4  Pippyg         1   0.88   0.88   0.88        NA
+##  2017       5  Pippyg         3   0.98   0.93   0.84      0.08
+##  2017       6  Pippyg         5   0.97   0.91   0.83      0.07
+##  2017       7  Pippyg         2   0.97   0.96   0.94      0.02
+##  2017       8  Pippyg        60   0.98   0.95   0.54      0.08
+##  2017       9  Pippyg        78   0.99   0.95   0.57      0.06
+##  2017      10  Pippyg        28   0.98   0.96   0.84      0.03
+##  2017      11  Pippyg         6   0.98   0.95   0.91      0.03
+##  2018       1  Pippyg         5   0.98   0.97   0.94      0.02
+##  2018       3  Pippyg         2   0.98   0.98   0.98      0.00
+##  2018       4  Pippyg         9   0.98   0.97   0.93      0.02
+##  2018       5  Pippyg        19   0.99   0.91   0.37      0.15
+##  2018       6  Pippyg         1   0.97   0.97   0.97        NA
+##  2018       7  Pippyg       161   0.99   0.94   0.34      0.09
+##  2018       8  Pippyg        77   0.99   0.88   0.33      0.16
+##  2018       9  Pippyg        38   0.99   0.91   0.34      0.11
+##  2018      10  Pippyg        46   0.98   0.93   0.57      0.09
+##  2018      11  Pippyg         9   0.99   0.95   0.83      0.05
+## 
+## 
+##  Year   Month  species    count    max   mean    min   std_dev
+## -----  ------  --------  ------  -----  -----  -----  --------
+##  2016       9  Pleaur        71   0.99   0.95   0.57      0.07
+##  2016      10  Pleaur        22   0.99   0.96   0.88      0.03
+##  2017       6  Pleaur         1   0.89   0.89   0.89        NA
+##  2017       8  Pleaur        41   0.99   0.94   0.56      0.09
+##  2017       9  Pleaur        48   0.99   0.94   0.69      0.08
+##  2017      10  Pleaur        39   0.99   0.93   0.60      0.09
+##  2018       1  Pleaur         1   0.99   0.99   0.99        NA
+##  2018       2  Pleaur         2   0.94   0.92   0.91      0.02
+##  2018       3  Pleaur        15   0.99   0.82   0.47      0.18
+##  2018       4  Pleaur         6   0.99   0.88   0.39      0.24
+##  2018       5  Pleaur         2   0.99   0.98   0.98      0.01
+##  2018       7  Pleaur        50   0.99   0.96   0.73      0.06
+##  2018       8  Pleaur        66   0.99   0.92   0.38      0.15
+##  2018       9  Pleaur        25   0.99   0.90   0.41      0.15
+##  2018      10  Pleaur        19   0.99   0.93   0.68      0.10
+##  2018      11  Pleaur         2   0.99   0.97   0.95      0.03
+## 
+## 
+##  Year   Month  species    count    max   mean    min   std_dev
+## -----  ------  --------  ------  -----  -----  -----  --------
+##  2017       8  Eptser         2   0.58   0.55   0.53      0.04
+##  2017      10  Eptser         2   0.84   0.70   0.56      0.20
+##  2018       7  Eptser        26   0.99   0.83   0.54      0.18
+##  2018       8  Eptser        14   0.99   0.86   0.43      0.17
+##  2018       9  Eptser         1   0.98   0.98   0.98        NA
+## 
+## 
+##  Year   Month  species    count    max   mean    min   std_dev
+## -----  ------  --------  ------  -----  -----  -----  --------
+##  2017       8  Nyclei         1   0.79   0.79   0.79        NA
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{#### }\AlertTok{NOTE} \AlertTok{NOTE} \AlertTok{NOTE}\NormalTok{ ####}
+\CommentTok{#}
+\CommentTok{# To generate a pdf report from this process  it is not possible to use }
+\CommentTok{# the RStudio ctr-K short cut as this throws a number of errors.}
+\CommentTok{# Instead use the following code entered at the console}
+\CommentTok{#}
+\CommentTok{# rmarkdown::render(paste(d_home,"bin/snips/ProcessXLSXfromSEN.R", sep = ""), "pdf_document")}
+\CommentTok{#}
+\NormalTok{#### }\RegionMarkerTok{END} \RegionMarkerTok{END} \RegionMarkerTok{END}\NormalTok{ ####}
+
+
+\NormalTok{#### Supplementary code to combine the two SR2 files from SEN.}
+\CommentTok{# Parameters}
+\NormalTok{source_files <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}
+  \StringTok{"2019-02-12_SEN_Evaluation_SR2.csv"}\NormalTok{,}
+  \StringTok{"2019-02-28_SEN_Evaluation_SR2.csv"}
+\NormalTok{)}
+
+\NormalTok{output_file_name <-}\StringTok{ "2019-03-04_Summary_SEN_Evaluation_SR2.csv"}
+
+\NormalTok{tmp_file1 <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\KeywordTok{paste}\NormalTok{(d_tidy, source_files[}\DecValTok{1}\NormalTok{], }\DataTypeTok{sep =} \StringTok{""}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   obs_datetime = col_datetime(format = ""),
+##   filename = col_character(),
+##   species = col_character(),
+##   confidence_index = col_double(),
+##   real_error = col_double()
+## )
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tmp_file2 <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\KeywordTok{paste}\NormalTok{(d_tidy, source_files[}\DecValTok{2}\NormalTok{], }\DataTypeTok{sep =} \StringTok{""}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   obs_datetime = col_datetime(format = ""),
+##   filename = col_character(),
+##   species = col_character(),
+##   confidence_index = col_double(),
+##   real_error = col_double(),
+##   actual_date = col_datetime(format = ""),
+##   session_date = col_datetime(format = ""),
+##   time = col_datetime(format = "")
+## )
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tmp_file1 <-}\StringTok{ }\NormalTok{tmp_file1 }\OperatorTok{%>%}\StringTok{ }\KeywordTok{transmute}\NormalTok{(}
+\NormalTok{  .,}
+  \DataTypeTok{obs_datetime =}\NormalTok{ obs_datetime,}
+  \DataTypeTok{filename =}\NormalTok{ filename,}
+  \DataTypeTok{species =}\NormalTok{ species,}
+  \DataTypeTok{confidence_index =}\NormalTok{ confidence_index,}
+  \DataTypeTok{real_error =}\NormalTok{ real_error}
+\NormalTok{)}
+
+\NormalTok{tmp_file2 <-}\StringTok{ }\NormalTok{tmp_file2 }\OperatorTok{%>%}\StringTok{ }\KeywordTok{transmute}\NormalTok{(}
+\NormalTok{  .,}
+  \DataTypeTok{obs_datetime =}\NormalTok{ obs_datetime,}
+  \DataTypeTok{filename =}\NormalTok{ filename,}
+  \DataTypeTok{species =}\NormalTok{ species,}
+  \DataTypeTok{confidence_index =}\NormalTok{ confidence_index,}
+  \DataTypeTok{real_error =}\NormalTok{ real_error}
+\NormalTok{)}
+
+\NormalTok{tmp_SNclassifier_results <-}\StringTok{ }\KeywordTok{bind_rows}\NormalTok{(}
+\NormalTok{  tmp_file1,}
+\NormalTok{  tmp_file2,}
+  \DataTypeTok{.id =} \OtherTok{NULL}
+\NormalTok{)}
+
+\KeywordTok{write_csv}\NormalTok{(tmp_SNclassifier_results, }\KeywordTok{paste}\NormalTok{(d_tidy, output_file_name, }\DataTypeTok{sep =} \StringTok{""}\NormalTok{), }\DataTypeTok{col_names =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}
