@@ -1,4 +1,12 @@
 ###### SM2 Evaluation Functions
+# Load results data file
+source_data = "_tcResults.csv"
+source_file <- as.character(paste(d_tidy, site_code, source_data, sep = ""))
+if (! exists("tbl_tcResults")) {
+  stopifnot( file.exists(source_file))
+  tbl_tcResults <- read.csv(source_file, header = TRUE) 
+}
+names(tbl_tcResults)[4] <- "confidence"
 
 # Summary Statistics
 tbl_tcResults %>%  
@@ -14,6 +22,39 @@ tbl_mnlyStats <- tbl_tcResults %>%
   summarise(count = n(), max = max(confidence), mean = mean(confidence), min = min(confidence), std_deviation = sd(confidence))
 names(tbl_mnlyStats)[1] <- "Year"
 names(tbl_mnlyStats)[2] <- "Month"
+
+### Weekly Summary
+tbl_wklyStats <- tbl_tcResults %>%  
+  filter(., confidence >= confidence_filter) %>% 
+  group_by(year(as.Date(obs_datetime, "%Y-%m-%d")), week(as.Date(obs_datetime, "%Y-%m-%d")),species) %>% 
+  summarise(count = n(), 
+            max = max(confidence), 
+            mean = mean(confidence), 
+            min = min(confidence), 
+            std_deviation = sd(confidence)) %>%
+  as_tibble()
+
+names(tbl_wklyStats)[1] <- "Year"
+names(tbl_wklyStats)[2] <- "Week"
+
+# select data for heat map
+#
+test_year = 2017
+wkly_summary <- tbl_wklyStats %>%
+  filter(Year == test_year) %>%
+  select(., 
+         "WeekNum" = Week, 
+         "Species" = species, 
+         "Count" = count)
+
+gg <- ggplot(data = wkly_summary, aes(x = WeekNum  , y = Species)) +
+  geom_tile(aes(fill = Count ), color = "white") +
+  scale_fill_gradient(low = "white", high = "steelblue")
+gg
+
+
+
+ 
 
 ######################### Extract Records for low frequency species #######
 ## based on:> https://stackoverflow.com/questions/20204257/subset-data-frame-based-on-number-of-rows-per-group

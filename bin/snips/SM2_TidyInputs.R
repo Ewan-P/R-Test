@@ -7,6 +7,13 @@ species_list <-
     "~/R-Test/tidy/", as.character(LocalSpeciesList), sep = ""
   ), col_names = TRUE))
 
+########## Load local site list
+sites_data <-
+  data.frame(read_csv(paste(
+    "~/R-Test/tidy/", as.character(LocalSites), sep = ""
+  ), col_names = TRUE))
+LocalSites <- sites_data$sitecode
+
 
 ##########  Consolidate the input files and write out a new csv to the "tidy" directory
 tbl_Idshort <-

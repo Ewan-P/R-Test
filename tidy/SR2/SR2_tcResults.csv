@@ -1,4 +1,4 @@
-obs_datetime,filename,species,confidence
+obs_datetime,filename,species,accuracy
 2015-10-13T19:46:35Z,SR2_20151013_194635_264.wav,Barbar,0.99
 2015-10-13T20:45:10Z,SR2_20151013_204510_985.wav,Barbar,0.99
 2015-10-15T19:35:46Z,SR2_20151015_193546_323.wav,Barbar,0.99
