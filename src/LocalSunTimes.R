@@ -4,6 +4,14 @@
 # categories: ["R"]
 # tags: ["R Markdown", "bats", "suntimes"]
 # Source https://github.com/Nattereri/rbats-blog/blob/master/content/post/2018-04-05-rbats_night_time.Rmd
+# 
+### 2019-03-21 Ewan Parsons
+# Modified to use start end dates, and unix timezones.
+# Includes demo code to generate a csv of sun rise/set times.
+# demo will only execute if "runSunTimesTest is TRUE
+# 2019-04-19 EAP
+# revised demo code to avoid overwriting exisiting output files
+
 
 library(tidyverse)
 library(rlang)
@@ -363,6 +371,7 @@ NightData_ed <- function(startDate, endDate, lat, long, timeZone) {
 # Will only execute if "runSunTimesTest is TRUE
 # and there needs to be a sitedata.csv file in the d_tidy directory
 if (runSunTimeTest) {
+
   dataFile <- paste0(d_tidy, "sitedata.csv")
   if (!isTRUE(file.exists(dataFile)))
     stop("No data file found")
@@ -380,6 +389,12 @@ if (runSunTimeTest) {
     
     if (is.na(v_siteCode))
       next
+    if ( isTRUE( file.exists( paste0( d_tidy,
+                                      v_siteCode,
+                                      "-SunTime.csv")))) { #skip exising files
+      next
+    }
+    
     print(paste(v_siteCode, v_siteLat, v_siteLong, sep = " "))
     tbl_sunTimes <-
       NightData_ed(
