@@ -378,7 +378,7 @@ if (runSunTimeTest) {
   
   library(readr)
   siteDetails <- as.data.frame(read_csv(dataFile))
-  v_startDate <- "01-01-2016"  #Hard-coded change to suit application
+  v_startDate <- "01-01-2013"  #Hard-coded change to suit application
   v_endDate <- "31-12-2019" #Hard-coded change to suit application
   
   for (i in 1:nrow(siteDetails)) {
