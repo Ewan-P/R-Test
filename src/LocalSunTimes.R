@@ -11,6 +11,11 @@
 # demo will only execute if "runSunTimesTest is TRUE
 # 2019-04-19 EAP
 # revised demo code to avoid overwriting exisiting output files
+# 
+# ### 2020-03-31 EAP
+# Updated end date to 2021-12-31 to add two more years to data files.
+# This was done by commenting out lines 396-400.
+# When update was complete comments were removed to reinstate code.
 
 
 library(tidyverse)
@@ -379,7 +384,7 @@ if (runSunTimeTest) {
   library(readr)
   siteDetails <- as.data.frame(read_csv(dataFile))
   v_startDate <- "01-01-2013"  #Hard-coded change to suit application
-  v_endDate <- "31-12-2019" #Hard-coded change to suit application
+  v_endDate <- "31-12-2021" #Hard-coded change to suit application
   
   for (i in 1:nrow(siteDetails)) {
     v_siteCode <- siteDetails[i, 1]
