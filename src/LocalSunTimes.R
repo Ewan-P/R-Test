@@ -11,6 +11,9 @@
 # demo will only execute if "runSunTimesTest is TRUE
 # 2019-04-19 EAP
 # revised demo code to avoid overwriting exisiting output files
+runSunTimeTest <- TRUE
+d_tidy <- paste0(getwd(),"/R-Test/tidy/")
+#
 # 
 # ### 2020-03-31 EAP
 # Updated end date to 2021-12-31 to add two more years to data files.
