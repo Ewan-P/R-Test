@@ -387,7 +387,7 @@ if (runSunTimeTest) {
   library(readr)
   siteDetails <- as.data.frame(read_csv(dataFile))
   v_startDate <- "01-01-2013"  #Hard-coded change to suit application
-  v_endDate <- "31-12-2021" #Hard-coded change to suit application
+  v_endDate <- "31-12-2022" #Hard-coded change to suit application
   
   for (i in 1:nrow(siteDetails)) {
     v_siteCode <- siteDetails[i, 1]
@@ -397,11 +397,11 @@ if (runSunTimeTest) {
     
     if (is.na(v_siteCode))
       next
-    if ( isTRUE( file.exists( paste0( d_tidy,
-                                      v_siteCode,
-                                      "-SunTime.csv")))) { #skip exising files
-      next
-    }
+    # if ( isTRUE( file.exists( paste0( d_tidy,
+    #                                   v_siteCode,
+    #                                   "-SunTime.csv")))) { #skip exising files
+    #   next
+    # }
     
     print(paste(v_siteCode, v_siteLat, v_siteLong, sep = " "))
     tbl_sunTimes <-
